@@ -1,17 +1,25 @@
 diff --git a/activity.py b/activity.py
-index 693ceba..01e7b39 100644
+index 693ceba..aaa6187 100644
 --- a/activity.py
 +++ b/activity.py
-@@ -17,13 +17,17 @@ import sugargame.canvas
+@@ -6,11 +6,9 @@ gi.require_version('Gdk', '3.0')
+ from gi.repository import Gtk, Gdk
+ import pygame
  
- import falabracman
+-from sugar3.activity.activity import Activity
+ from sugar3.graphics.toolbarbox import ToolbarBox
+ from sugar3.graphics.style import GRID_CELL_SIZE
+ from sugar3.activity.widgets import StopButton
+-from sugar3.activity.widgets import ActivityToolbarButton
+ from sugar3.graphics.radiotoolbutton import RadioToolButton
+ 
+ import sugargame.canvas
+@@ -19,11 +17,13 @@ import falabracman
+ 
+ sys.path.append('..')  # Import sugargame package from top directory.
  
 +from sugarapp.widgets import SugarCompatibleActivity
 +from sugarapp.widgets import ExtendedActivityToolbarButton
-+from sugarapp.helpers import PrimaryMonitor
-+
- sys.path.append('..')  # Import sugargame package from top directory.
- 
  
 -class Falabracman(Activity):
 +class Falabracman(SugarCompatibleActivity):
@@ -22,18 +30,7 @@ index 693ceba..01e7b39 100644
  
          self.paused = False
  
-@@ -41,8 +45,8 @@ class Falabracman(Activity):
- 
-         # Note that set_canvas implicitly calls read_file when
-         # resuming from the Journal.
--        w = Gdk.Screen.width()
--        h = Gdk.Screen.height() - GRID_CELL_SIZE
-+        w = PrimaryMonitor.width()
-+        h = PrimaryMonitor.height() - GRID_CELL_SIZE
- 
-         self._pygamecanvas.set_size_request(w, h)
-         self.set_canvas(self._pygamecanvas)
-@@ -53,7 +57,7 @@ class Falabracman(Activity):
+@@ -53,7 +53,7 @@ class Falabracman(Activity):
          self.set_toolbar_box(toolbar_box)
          toolbar_box.show()
  
@@ -41,3 +38,4 @@ index 693ceba..01e7b39 100644
 +        activity_button = ExtendedActivityToolbarButton(self)
          toolbar_box.toolbar.insert(activity_button, -1)
          activity_button.show()
+ 
