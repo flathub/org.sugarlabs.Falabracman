@@ -71,10 +71,13 @@
                     "type": "patch",
                     "path": "falabracman-port.patch"
                 },
-
                 {
                     "type": "patch",
                     "path": "falabracman-info.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "falabracman-monitors.patch"
                 }
             ],
             "post-install": [
